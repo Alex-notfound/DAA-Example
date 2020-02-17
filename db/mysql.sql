@@ -14,5 +14,12 @@ CREATE TABLE `daaexample`.`users` (
 	PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `daaexample`.`pets` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`name` varchar(50) NOT NULL,
+	`owner` int NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE USER 'daa'@'localhost' IDENTIFIED BY 'daa';
 GRANT ALL ON `daaexample`.* TO 'daa'@'localhost';
