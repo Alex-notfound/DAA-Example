@@ -14,6 +14,13 @@ CREATE TABLE `daaexample`.`users` (
 	PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `daaexample`.`pets` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`name` varchar(50) NOT NULL,
+	`owner` int NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE USER 'daa'@'localhost' IDENTIFIED BY 'daa';
 GRANT ALL ON `daaexample`.* TO 'daa'@'localhost';
 
@@ -25,6 +32,15 @@ INSERT INTO `daaexample`.`people` (`id`,`name`,`surname`) VALUES (0,'Ana','Marí
 INSERT INTO `daaexample`.`people` (`id`,`name`,`surname`) VALUES (0,'María','Nuevo');
 INSERT INTO `daaexample`.`people` (`id`,`name`,`surname`) VALUES (0,'Alba','Fernández');
 INSERT INTO `daaexample`.`people` (`id`,`name`,`surname`) VALUES (0,'Asunción','Jiménez');
+
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Firulais','1');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Terry','1');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Luna','3');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Toby','3');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Pancho','4');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'León','4');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Sasha','5');
+INSERT INTO `daaexample`.`pets` (`id`,`name`,`owner`) VALUES (0,'Rubén','6');
 
 -- The password for each user is its login suffixed with "pass". For example, user "admin" has the password "adminpass".
 INSERT INTO `daaexample`.`users` (`login`,`password`,`role`)
