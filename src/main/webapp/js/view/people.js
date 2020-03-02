@@ -23,7 +23,7 @@ var PeopleView = (function() {
 				});
 			},
 			function() {
-			    	alert('No has sido posible acceder al listado de personas.');
+			    	alert('No ha sido posible acceder al listado de personas.');
 			});
 			
 			// La acción por defecto de enviar formulario (submit) se sobreescribe
@@ -96,7 +96,7 @@ var PeopleView = (function() {
 		};
 		
 		this.deletePerson = function(id) {
-			if (confirm('Está a punto de eliminar a una persona. ¿Está seguro de que desea continuar?')) {
+			if (confirm('Está a punto de eliminar a una personaX. ¿Está seguro de que desea continuar?')) {
 				dao.deletePerson(id,
 					function() {
 						$('tr#person-' + id).remove();

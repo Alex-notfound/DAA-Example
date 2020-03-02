@@ -23,7 +23,7 @@ var PetsView = (function() {
 					appendToTable(pet);
 				});
 			}, function() {
-				alert('No has sido posible acceder al listado de petas.');
+				alert('No ha sido posible acceder al listado de mascotas.');
 			});
 
 			// La acción por defecto de enviar formulario (submit) se
@@ -35,7 +35,7 @@ var PetsView = (function() {
 				if (self.isEditing()) {
 					dao.modifyPet(pet, function(pet) {
 						$('#pet-' + pet.id + ' td.name').text(pet.name);
-						$('#pet-' + pet.id + ' td.surname').text(pet.surname);
+						$('#pet-' + pet.id + ' td.owner').text(pet.owner);
 						self.resetForm();
 					}, showErrorMessage, self.enableForm);
 				} else {
@@ -56,7 +56,7 @@ var PetsView = (function() {
 			return {
 				'id' : form.find('input[name="id"]').val(),
 				'name' : form.find('input[name="name"]').val(),
-				'surname' : form.find('input[name="surname"]').val()
+				'owner' : form.find('input[name="owner"]').val()
 			};
 		};
 
@@ -67,7 +67,7 @@ var PetsView = (function() {
 				return {
 					'id' : id,
 					'name' : row.find('td.name').text(),
-					'surname' : row.find('td.surname').text()
+					'owner' : row.find('td.owner').text()
 				};
 			} else {
 				return undefined;
@@ -82,15 +82,15 @@ var PetsView = (function() {
 
 				form.find('input[name="id"]').val(id);
 				form.find('input[name="name"]').val(row.find('td.name').text());
-				form.find('input[name="surname"]').val(
-						row.find('td.surname').text());
+				form.find('input[name="owner"]').val(
+						row.find('td.owner').text());
 
 				$('input#btnSubmit').val('Modificar');
 			}
 		};
 
 		this.deletePet = function(id) {
-			if (confirm('Está a punto de eliminar a una peta. ¿Está seguro de que desea continuar?')) {
+			if (confirm('Está a punto de eliminar a una mascota. ¿Está seguro de que desea continuar?')) {
 				dao.deletePet(id, function() {
 					$('tr#pet-' + id).remove();
 				}, showErrorMessage);
@@ -125,7 +125,7 @@ var PetsView = (function() {
 				<thead>\
 					<tr class="row">\
 						<th class="col-sm-4">Nombre</th>\
-						<th class="col-sm-5">Apellido</th>\
+						<th class="col-sm-5">Propietario</th>\
 						<th class="col-sm-3">&nbsp;</th>\
 					</tr>\
 				</thead>\
@@ -145,7 +145,7 @@ var PetsView = (function() {
 						<input name="name" type="text" value="" placeholder="Nombre" class="form-control" required/>\
 					</div>\
 					<div class="col-sm-5">\
-						<input name="surname" type="text" value="" placeholder="Apellido" class="form-control" required/>\
+						<input name="owner" type="text" value="" placeholder="Propietario" class="form-control" required/>\
 					</div>\
 					<div class="col-sm-3">\
 						<input id="btnSubmit" type="submit" value="Crear" class="btn btn-primary" />\
@@ -162,8 +162,8 @@ var PetsView = (function() {
 			<td class="name col-sm-4">'
 				+ pet.name
 				+ '</td>\
-			<td class="surname col-sm-5">'
-				+ pet.surname
+			<td class="owner col-sm-5">'
+				+ pet.owner
 				+ '</td>\
 			<td class="col-sm-3">\
 				<a class="edit btn btn-primary" href="#">Editar</a>\

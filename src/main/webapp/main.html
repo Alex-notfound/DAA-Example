@@ -24,6 +24,9 @@
 		<div id="people-container">
 			<h1 class="display-5 mt-3 mb-3">Personas</h1>
 		</div>
+		<div id="pets-container">
+			<h1 class="display-5 mt-3 mb-3">Mascotas</h1>
+		</div>
 	</div>
 
 	<script type="text/javascript"
@@ -46,9 +49,8 @@
 					var view = new PeopleView(new PeopleDAO(),
 							'people-container', 'people-container');
 
-					// 		    var viewPets = new PetsView(new PetsDAO(),
-					// 			    	'pets-container', 'pets-container'
-					// 		    	);
+					var viewPets = new PetsView(new PetsDAO(),
+							'pets-container', 'pets-container');
 
 					view.init();
 				});
