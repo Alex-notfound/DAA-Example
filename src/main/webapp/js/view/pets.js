@@ -89,6 +89,15 @@ var PetsView = (function() {
 
 				$('input#btnSubmit').val('Modificar');
 			}
+
+		};
+
+		this.addOwnerToPet = function(pet) {
+			var petId = pet.id;
+			daoPeople.getPerson(pet.owner, function(owner) {
+				$('#pet-' + petId + ' td.owner').append(
+						owner.name + ' ' + owner.surname);
+			});
 		};
 
 		this.deletePet = function(id) {
@@ -179,9 +188,8 @@ var PetsView = (function() {
 			<td class="name col-sm-4">'
 				+ pet.name
 				+ '</td>\
-			<td class="owner col-sm-5">'
-				+ pet.owner
-				+ '</td>\
+			<td class="owner col-sm-5">\
+				</td>\
 			<td class="col-sm-3">\
 				<a class="edit btn btn-primary" href="#">Editar</a>\
 				<a class="delete btn btn-warning" href="#">Eliminar</a>\
@@ -205,6 +213,7 @@ var PetsView = (function() {
 
 	var appendToTable = function(pet) {
 		$(listQuery + ' > tbody:last').append(createPetRow(pet));
+		self.addOwnerToPet(pet);
 		addRowListeners(pet);
 	};
 
