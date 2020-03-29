@@ -1,6 +1,6 @@
 var PetsView = (function() {
 	var dao;
-
+	var daoPeople
 	// Referencia a this que permite acceder a las funciones públicas desde las
 	// funciones de jQuery.
 	var self;
@@ -10,10 +10,12 @@ var PetsView = (function() {
 	var formQuery = '#' + formId;
 	var listQuery = '#' + listId;
 
-	function PetsView(petsDao, formContainerId, listContainerId) {
+	function PetsView(petsDao, peopleDao, formContainerId, listContainerId) {
 		dao = petsDao;
+		daoPeople = peopleDao;
 		self = this;
 
+		insertPetsTitulo($('#' + formContainerId));
 		insertPetsForm($('#' + formContainerId));
 		insertPetsList($('#' + listContainerId));
 
@@ -134,6 +136,10 @@ var PetsView = (function() {
 			</table>');
 	};
 
+	var insertPetsTitulo = function(parent) {
+		parent.append('<h1 class="display-5 mt-3 mb-3">Mascotas\</h1>');
+	}
+
 	var insertPetsForm = function(parent) {
 		parent
 				.append('<form id="'
@@ -145,7 +151,7 @@ var PetsView = (function() {
 						<input name="name" type="text" value="" placeholder="Nombre" class="form-control" required/>\
 					</div>\
 					<div class="col-sm-5">\
-						<input name="owner" type="text" value="" placeholder="Propietario" class="form-control" required/>\
+						\<select id="personas" class="form-control" required>\</select>\
 					</div>\
 					<div class="col-sm-3">\
 						<input id="btnSubmit" type="submit" value="Crear" class="btn btn-primary" />\
@@ -153,6 +159,17 @@ var PetsView = (function() {
 					</div>\
 				</div>\
 			</form>');
+
+		daoPeople.listPeople(function(people) {
+			$.each(people, function(key, person) {
+				$("#personas").append(
+						'\<option name="' + person.id + '">' + person.name
+								+ ' ' + person.surname + '\</option>')
+			});
+
+		}, function() {
+			alert('No ha sido posible acceder al listado de personas.');
+		});
 	};
 
 	var createPetRow = function(pet) {

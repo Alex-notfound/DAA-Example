@@ -133,7 +133,7 @@ public class PetsResource {
 	public Response modify(@PathParam("id") int id, @FormParam("name") String name, @FormParam("owner") int owner) {
 		try {
 			Person ownerEntity = this.peopleDao.get(owner);
-			final Pet modifiedPet = new Pet(id, name, ownerEntity);
+			final Pet modifiedPet = new Pet(id, name, ownerEntity.getId());
 			this.dao.modify(modifiedPet);
 
 			return Response.ok(modifiedPet).build();
