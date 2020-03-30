@@ -15,16 +15,15 @@
 				<a href="#" class="navbar-brand d-flex align-items-center"> <strong>DAA
 						Example</strong>
 				</a>
+				<button id="button-people" class="btn btn-dark">Personas</button>
+				<button id="button-pets" class="btn btn-dark">Mascotas</button>
 				<button id="logout" class="btn btn-dark">Cerrar sesión</button>
 			</div>
 		</div>
 	</header>
 
 	<div class="container">
-		<div id="people-container">
-			<h1 class="display-5 mt-3 mb-3">Personas</h1>
-		</div>
-		<div id="pets-container"></div>
+		<div id="content-container"></div>
 	</div>
 
 	<script type="text/javascript"
@@ -39,20 +38,30 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					$('#button-people').click(
+							function(event) {
+								$('#content-container').empty()
+								var view = new PeopleView(new PeopleDAO(),
+										'content-container',
+										'content-container');
+								view.init();
+							});
+					$('#button-pets').click(
+							function(event) {
+								$('#content-container').empty()
+								var viewPets = new PetsView(new PetsDAO(),
+										new PeopleDAO(), 'content-container',
+										'content-container');
+								viewPets.init();
+							});
 					$('#logout').click(function(event) {
 						event.preventDefault();
 						doLogout();
 					});
 
 					var view = new PeopleView(new PeopleDAO(),
-							'people-container', 'people-container');
-
-					var viewPets = new PetsView(new PetsDAO(), new PeopleDAO(),
-							'pets-container', 'pets-container');
-
+							'content-container', 'content-container');
 					view.init();
-
-					viewPets.init();
 				});
 	</script>
 </body>

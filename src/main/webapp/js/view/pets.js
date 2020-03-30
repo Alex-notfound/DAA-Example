@@ -37,7 +37,7 @@ var PetsView = (function() {
 				if (self.isEditing()) {
 					dao.modifyPet(pet, function(pet) {
 						$('#pet-' + pet.id + ' td.name').text(pet.name);
-//						$('#pet-' + pet.id + ' td.owner').val(pet.owner);
+						// $('#pet-' + pet.id + ' td.owner').val(pet.owner);
 						self.addOwnerToPet(pet);
 						self.resetForm();
 					}, showErrorMessage, self.enableForm);
@@ -96,7 +96,8 @@ var PetsView = (function() {
 		this.addOwnerToPet = function(pet) {
 			var petId = pet.id;
 			daoPeople.getPerson(pet.owner, function(owner) {
-				$('#pet-' + petId + ' td.owner').text(owner.name + ' ' + owner.surname);
+				$('#pet-' + petId + ' td.owner').text(
+						owner.name + ' ' + owner.surname);
 			});
 		};
 

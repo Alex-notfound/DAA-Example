@@ -13,6 +13,7 @@ var PeopleView = (function() {
 		dao = peopleDao;
 		self = this;
 		
+		insertPeopleTitulo($('#' + formContainerId));
 		insertPeopleForm($('#' + formContainerId));
 		insertPeopleList($('#' + listContainerId));
 		
@@ -140,6 +141,10 @@ var PeopleView = (function() {
 			</table>'
 		);
 	};
+	
+	var insertPeopleTitulo = function(parent) {
+		parent.append('<h1 class="display-5 mt-3 mb-3">Personas\</h1>');
+	}
 
 	var insertPeopleForm = function(parent) {
 		parent.append(
