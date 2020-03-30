@@ -34,6 +34,13 @@ var PetsDAO = (function() {
 			}, done, fail, always);
 		};
 
+		this.getPet = function(id, done, fail, always) {
+			requestByAjax({
+				url : resourcePath + id,
+				type : 'GET',
+			}, done, fail, always);
+		};
+
 		this.modifyPet = function(pet, done, fail, always) {
 			requestByAjax({
 				url : resourcePath + pet.id,

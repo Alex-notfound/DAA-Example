@@ -37,7 +37,8 @@ var PetsView = (function() {
 				if (self.isEditing()) {
 					dao.modifyPet(pet, function(pet) {
 						$('#pet-' + pet.id + ' td.name').text(pet.name);
-						$('#pet-' + pet.id + ' td.owner').text(pet.owner);
+//						$('#pet-' + pet.id + ' td.owner').val(pet.owner);
+						self.addOwnerToPet(pet);
 						self.resetForm();
 					}, showErrorMessage, self.enableForm);
 				} else {
@@ -58,7 +59,7 @@ var PetsView = (function() {
 			return {
 				'id' : form.find('input[name="id"]').val(),
 				'name' : form.find('input[name="name"]').val(),
-				'owner' : form.find('input[name="owner"]').val()
+				'owner' : form.find('select[name="owner"]').val()
 			};
 		};
 
@@ -84,9 +85,9 @@ var PetsView = (function() {
 
 				form.find('input[name="id"]').val(id);
 				form.find('input[name="name"]').val(row.find('td.name').text());
-				form.find('input[name="owner"]').val(
-						row.find('td.owner').text());
-
+				dao.getPet(id, function(pet) {
+					form.find('select[name="owner"]').val(pet.owner);
+				});
 				$('input#btnSubmit').val('Modificar');
 			}
 
@@ -95,8 +96,7 @@ var PetsView = (function() {
 		this.addOwnerToPet = function(pet) {
 			var petId = pet.id;
 			daoPeople.getPerson(pet.owner, function(owner) {
-				$('#pet-' + petId + ' td.owner').append(
-						owner.name + ' ' + owner.surname);
+				$('#pet-' + petId + ' td.owner').text(owner.name + ' ' + owner.surname);
 			});
 		};
 
@@ -160,7 +160,7 @@ var PetsView = (function() {
 						<input name="name" type="text" value="" placeholder="Nombre" class="form-control" required/>\
 					</div>\
 					<div class="col-sm-5">\
-						\<select id="personas" class="form-control" required>\</select>\
+						\<select name="owner" id="personas-select" class="form-control" required>\</select>\
 					</div>\
 					<div class="col-sm-3">\
 						<input id="btnSubmit" type="submit" value="Crear" class="btn btn-primary" />\
@@ -171,14 +171,15 @@ var PetsView = (function() {
 
 		daoPeople.listPeople(function(people) {
 			$.each(people, function(key, person) {
-				$("#personas").append(
-						'\<option name="' + person.id + '">' + person.name
+				$("#personas-select").append(
+						'\<option name="' + person.id + '" id="' + person.id
+								+ '" value="' + person.id + '">' + person.name
 								+ ' ' + person.surname + '\</option>')
 			});
-
 		}, function() {
 			alert('No ha sido posible acceder al listado de personas.');
 		});
+
 	};
 
 	var createPetRow = function(pet) {
