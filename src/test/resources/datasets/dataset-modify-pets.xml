@@ -12,7 +12,6 @@
 	<people id="8" name="Patricia" surname="Pérez" />
 	<people id="9" name="Julia" surname="Justa" />
 	<people id="10" name="Juan" surname="Jiménez" />
-	<people id="11" name="John" surname="Doe" />
 
 	<users login="admin"
 		password="713bfda78870bf9d1b261f565286f85e97ee614efe5f0faf7c34e7ca4f65baca"
@@ -24,7 +23,7 @@
 	<pets id="1" name="Firulais" owner="1" />
 	<pets id="2" name="Terry" owner="1" />
 	<pets id="3" name="Luna" owner="3" />
-	<pets id="4" name="Toby" owner="3" />
+	<pets id="4" name="John" owner="1" />
 	<pets id="5" name="Pancho" owner="4" />
 	<pets id="6" name="León" owner="4" />
 	<pets id="7" name="Sasha" owner="5" />

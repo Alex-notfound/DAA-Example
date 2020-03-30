@@ -54,7 +54,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 					if (this.dao.checkLogin(userPass[0], userPass[1])) {
 						final User user = this.dao.get(userPass[0]);
 						
-						if (isPeoplePath(requestContext) && !user.getRole().equals("ADMIN")) {
+						if ((isPeoplePath(requestContext) || isPetsPath(requestContext)) && !user.getRole().equals("ADMIN")) {
 							requestContext.abortWith(createResponse());
 						} else {
 							requestContext.setSecurityContext(new UserSecurityContext(user));
@@ -74,6 +74,11 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private static boolean isPeoplePath(ContainerRequestContext context) {
 		final List<PathSegment> pathSegments = context.getUriInfo().getPathSegments();
 		return !pathSegments.isEmpty() && pathSegments.get(0).getPath().equals("people");
+	}
+	
+	private static boolean isPetsPath(ContainerRequestContext context) {
+		final List<PathSegment> pathSegments = context.getUriInfo().getPathSegments();
+		return !pathSegments.isEmpty() && pathSegments.get(0).getPath().equals("pets");
 	}
 	
 	private static Response createResponse() {

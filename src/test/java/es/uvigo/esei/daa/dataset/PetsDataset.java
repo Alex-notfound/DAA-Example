@@ -6,7 +6,6 @@ import static java.util.Arrays.stream;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import es.uvigo.esei.daa.entities.Person;
 import es.uvigo.esei.daa.entities.Pet;
 
 public final class PetsDataset {
@@ -14,9 +13,15 @@ public final class PetsDataset {
 	}
 
 	public static Pet[] pets() {
-		return new Pet[] { new Pet(1, "Firulais", 1), new Pet(2, "Terry", 2), new Pet(3, "Luna", 3),
-				new Pet(4, "Toby", 4), new Pet(5, "Pancho", 5), new Pet(6, "León", 6), new Pet(7, "Sasha", 7),
-				new Pet(8, "Rubén", 8) };
+		return new Pet[] { 
+				new Pet(1, "Firulais", 1), 
+				new Pet(2, "Terry", 1), 
+				new Pet(3, "Luna", 3),
+				new Pet(4, "Toby", 3), 
+				new Pet(5, "Pancho", 4), 
+				new Pet(6, "León", 4), 
+				new Pet(7, "Sasha", 5),
+				new Pet(8, "Rubén", 6) };
 	}
 
 	public static Pet[] petWithout(int... ids) {
@@ -32,7 +37,7 @@ public final class PetsDataset {
 	}
 
 	public static int existentId() {
-		return 5;
+		return 4;
 	}
 
 	public static int nonExistentId() {

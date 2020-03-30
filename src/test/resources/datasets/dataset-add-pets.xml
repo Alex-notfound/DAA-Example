@@ -12,7 +12,6 @@
 	<people id="8" name="Patricia" surname="Pérez" />
 	<people id="9" name="Julia" surname="Justa" />
 	<people id="10" name="Juan" surname="Jiménez" />
-	<people id="11" name="John" surname="Doe" />
 
 	<users login="admin"
 		password="713bfda78870bf9d1b261f565286f85e97ee614efe5f0faf7c34e7ca4f65baca"
@@ -29,4 +28,5 @@
 	<pets id="6" name="León" owner="4" />
 	<pets id="7" name="Sasha" owner="5" />
 	<pets id="8" name="Rubén" owner="6" />
+	<pets id="9" name="John" owner="1" />
 </dataset>
