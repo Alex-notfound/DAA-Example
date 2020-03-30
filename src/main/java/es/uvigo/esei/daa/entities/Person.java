@@ -11,15 +11,16 @@ public class Person {
 	private int id;
 	private String name;
 	private String surname;
-	
+
 	// Constructor needed for the JSON conversion
-	Person() {}
-	
+	Person() {
+	}
+
 	/**
 	 * Constructs a new instance of {@link Person}.
 	 *
-	 * @param id identifier of the person.
-	 * @param name name of the person.
+	 * @param id      identifier of the person.
+	 * @param name    name of the person.
 	 * @param surname surname of the person.
 	 */
 	public Person(int id, String name, String surname) {
@@ -27,7 +28,11 @@ public class Person {
 		this.setName(name);
 		this.setSurname(surname);
 	}
-	
+
+	public Person(String name) {
+		this.setName(name);
+	}
+
 	/**
 	 * Returns the identifier of the person.
 	 * 
